@@ -1,5 +1,5 @@
 // 1. while, поки цикл виконується, будемо робити якісь дії
-let num = 50;
+// let num = 50;
 // while (num <= 55) {
 //     console.log(num);
 //     num++;
@@ -14,11 +14,57 @@ let num = 50;
 // while (num < 55);
 
 // 3. for, найпопулярніший, адже його можна детально налаштувати
-for (let i = 1; i <= 10; i++) {
-    if (i === 6) {
-        // break; перериває цикл
-        continue;
-        // пропускає обраний пункт
+// for (let i = 1; i <= 10; i++) {
+//     if (i === 6) {
+//         // break; перериває цикл
+//         continue;
+//         // пропускає обраний пункт
+//     }
+//     console.log(i);
+// }
+
+// ---------- 2nd part -----------
+// for (let i = 0; i <= 3; i++) {
+//     console.log(i);
+//     for (let j = 0; j <= 3; j++) {
+//         console.log(j);
+//     }
+// }
+
+// *
+// **
+// ***
+// ****
+// *****
+// ******
+
+// let result = '';
+// const length = 7;
+
+// for (let i = 1; i < length; i++) {
+
+//     for (let j = 0; j < i; j++) {
+//         result += '*';
+//     }
+
+//     result += '\n';
+// }
+
+// console.log(result);
+
+//------------------------------
+
+first: for (let i = 0; i < 3; i++) {
+    console.log(`First level: ${i}`);
+
+    for (let j = 0; j < 3; j++) {
+        console.log(`Second level: ${j}`);
+
+        for (let k = 0; k < 5; k++) {
+            if (k === 2) break first
+            console.log(`Third level: ${k}`);
+        }
     }
-    console.log(i);
 }
+
+// first - мітка, яка показує, який крок буде наступним
