@@ -1,39 +1,63 @@
-// 1. Простые условия
-if (4 == 9) {
-    console.log('ok')
+// 1. логічний оператор "та" - &&, обидві умови виконались
+// оператор && завжди зупиняється на першому false
+// const hamburger = 5;
+// const fries = null;
+
+// if (hamburger && fries) {
+//     console.log('take it!')
+// } else {
+//     console.log('sorry')
+// }
+
+// всегда false - 0, "", NAN, null, undefined
+// всё остальное - true
+
+// const hamburger = 3;
+// const fries = 1;
+// const cola = 1;
+
+// console.log(hamburger === 3 && cola && fries)
+
+// console.log(1 && 0);
+// console.log(1 && 5);
+// console.log(null && 5);
+// console.log(0 && 'awdawaddawd');
+
+// if (hamburger === 3 && cola === 1 && fries === 1) {
+//     console.log('take it!')
+// } else {
+//     console.log('sorry')
+// }
+
+// 2. логічний оператор "або" - || перевіряє на правду один з аргументів
+const hamburger = 3;
+const cola = 0;
+const fries = 3;
+const nuggets = 2;
+
+if (hamburger === 3 && cola === 2 || fries === 3 && nuggets) {
+    console.log('take it!')
 } else {
-    console.log('incorrect')
+    console.log('sorry')
 }
 
-const num = 50;
+console.log(hamburger === 3 && cola === 2 || fries === 3 && nuggets)
 
-if (num < 49) {
-    console.log('Error');
-} else if (num > 100) {
-    console.log('Too much');
-} else {
-    console.log('Ok');
-}
+let johnReport, alexReport, samReport, mariaReport = 'done';
 
-// 2. Условия с тернарным оператором (имеет 3 аргумента)
-// левая сторона до "?" - если, тогда выводим консоль, : - иначе
-(num == 50) ? console.log('Ok!') : console.log('Error');
+console.log(johnReport || alexReport || samReport || mariaReport)
+
+// 3. логічний оператор НЕ - !
+console.log(!0);
+
+// ||= логічне присвоєння "або", &&= логічне присвоєння "та", ?? оператор нульового злиття, ??= оператор нульового присвоєння
 
 
-// 3. Switch case - проверяет на строгое сравнение "==="
-const number = 50;
-
-switch (number) {
-    case 49: 
-        console.log('Wrong!');
-        break;
-    case 100:
-        console.log('Wrong again!');
-        break;
-    case 50:
-        console.log('Correct!');
-        break;
-    default:
-        console.log('Another time');
-        break;
-} 
+console.log(NaN || 2 || undefined);
+console.log(NaN && 2 && undefined);
+console.log(1 && 2 && 3);
+console.log(!1 && 2 || !3);
+console.log(25 || null && !3);
+console.log(NaN || null || !3 || undefined || 5);
+console.log(NaN || null && !3 && undefined || 5);
+console.log (5 === 5 && 3 > 1 || 5);
