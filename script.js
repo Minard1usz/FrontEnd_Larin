@@ -1,63 +1,24 @@
-// 1. логічний оператор "та" - &&, обидві умови виконались
-// оператор && завжди зупиняється на першому false
-// const hamburger = 5;
-// const fries = null;
-
-// if (hamburger && fries) {
-//     console.log('take it!')
-// } else {
-//     console.log('sorry')
+// 1. while, поки цикл виконується, будемо робити якісь дії
+let num = 50;
+// while (num <= 55) {
+//     console.log(num);
+//     num++;
 // }
 
-// всегда false - 0, "", NAN, null, undefined
-// всё остальное - true
-
-// const hamburger = 3;
-// const fries = 1;
-// const cola = 1;
-
-// console.log(hamburger === 3 && cola && fries)
-
-// console.log(1 && 0);
-// console.log(1 && 5);
-// console.log(null && 5);
-// console.log(0 && 'awdawaddawd');
-
-// if (hamburger === 3 && cola === 1 && fries === 1) {
-//     console.log('take it!')
-// } else {
-//     console.log('sorry')
+// 2. do, спочатку щось зробити, а потім перевірити умови
+// do {
+//     console.log(num);
+//     num++;
 // }
 
-// 2. логічний оператор "або" - || перевіряє на правду один з аргументів
-const hamburger = 3;
-const cola = 0;
-const fries = 3;
-const nuggets = 2;
+// while (num < 55);
 
-if (hamburger === 3 && cola === 2 || fries === 3 && nuggets) {
-    console.log('take it!')
-} else {
-    console.log('sorry')
+// 3. for, найпопулярніший, адже його можна детально налаштувати
+for (let i = 1; i <= 10; i++) {
+    if (i === 6) {
+        // break; перериває цикл
+        continue;
+        // пропускає обраний пункт
+    }
+    console.log(i);
 }
-
-console.log(hamburger === 3 && cola === 2 || fries === 3 && nuggets)
-
-let johnReport, alexReport, samReport, mariaReport = 'done';
-
-console.log(johnReport || alexReport || samReport || mariaReport)
-
-// 3. логічний оператор НЕ - !
-console.log(!0);
-
-// ||= логічне присвоєння "або", &&= логічне присвоєння "та", ?? оператор нульового злиття, ??= оператор нульового присвоєння
-
-
-console.log(NaN || 2 || undefined);
-console.log(NaN && 2 && undefined);
-console.log(1 && 2 && 3);
-console.log(!1 && 2 || !3);
-console.log(25 || null && !3);
-console.log(NaN || null || !3 || undefined || 5);
-console.log(NaN || null && !3 && undefined || 5);
-console.log (5 === 5 && 3 > 1 || 5);
