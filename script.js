@@ -34,3 +34,20 @@ logger();
 
 // 3. arrow function - () => {}, в основному використовується для обробника подій
 const calculate = (a, b) => {return a + b}; 
+
+
+// аргументи функції
+const usdCurr = 28;
+const eurCurr = 32;
+
+function convert(amount, curr) {
+    console.log(curr * amount);
+}
+
+convert(500, usdCurr);
+convert(500, eurCurr);
+convert(240, usdCurr);
+convert(240, eurCurr);
+
+// щоб функція була корисною, необхідно створювати лише її функціонал з аргументами, а необхідні дані повинні бути поза функцією
+// принцип DRY - don't repeat yourself
