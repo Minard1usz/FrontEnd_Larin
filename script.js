@@ -20,7 +20,7 @@ const personalMovieDB = {
 function writeYourGenres() {
     let i = 1;
     while (i <= 3){
-        const favoriteGenres = prompt(`Ваш любимый жанр под номером ${i}`);
+        const favoriteGenres = prompt(`Ваш любимый жанр под номером ${i}`).trim();
         personalMovieDB.genres.push(favoriteGenres);
         i++;
     }
@@ -29,7 +29,7 @@ writeYourGenres();
 
 function askUser() {
     for (let i = 0; i < 2; i++) {
-        const a = prompt('Один из последних просмотренных фильмов?', ''),
+        const a = prompt('Один из последних просмотренных фильмов?', '').trim(),
               b = prompt('На сколько оцените его?', '');
 
             if (a != null && b != null && a != '' && b != '' && a.length < 50) {
@@ -123,3 +123,8 @@ showMyDB();
 
 
 // console.log(personalMovieDB);
+
+
+//string.trim() - Метод trim() удаляет пробельные символы с начала и конца строки. 
+//Пробельными символами в этом контексте считаются все собственно пробельные символы (пробел, табуляция, неразрывный пробел и прочие) 
+//и все символы конца строки (LF, CR и прочие).
