@@ -1,118 +1,105 @@
-const arr = [11, 2, 32, 6, 18];
-arr.sort();
-// console.log(arr);
-// arr.length состоит из последнего индекса + 1
-arr[99] = 0;
-console.log(arr.length);
+let a = 5,
+    b = a;
 
-// Методы массива
-// 1) arr.pop - удаляет последний элемент в массиве
-arr.pop();
-console.log(arr);
+b = b + 5;
+console.log(b);
+console.log(a);
+// это работает лишь с примитивами, а не с объектами, массивами и т.д.
+//------------------
 
-// 2) arr.push - добавляет элемент в конец массива
-arr.push(9);
-console.log(arr);
+// const obj = {
+//     a: 5,
+//     b: 1
+// };
 
-// перебрать массив можно через цикл for
-// чтобы определиться к определённому элементу массива, нужно указать его в []
-for (let i = 0; i < arr.length; i++) {
-    console.log(arr[i]);
-}
+// const copy = obj; // ссылка
+// // copy - не скопировал новый объект, он лишь передает значение по ссылке
+// copy.a = 10;
+// // модифицируешь копию? модифицируешь главный объект
+// console.log(copy);
+// console.log(obj);
 
-// либо for of, который можно остановить через break или continue
-for (let value of arr) {
-    console.log(value);
-}
+//----------------------------
+function copy(mainObj) {
+    let objCopy = {};
 
-// for of работает только с массивоподобными сущностями: массив, псевдомассив, строка
-// объекты перебрать через for of нельзя
-
-
-// либо 3) arr.forEach(), остановить нельзя
-// имеет 3 аргумента: 1 - элемент, 2 - номер по порядку, 3 - ссылка на массив, который перебираем
-// arr.forEach(function(item, i, arr) {
-//     console.log(`${i}: ${item} внутри массива ${arr}`);
-// });
-
-
-// 4) arr.split(s) - помагает разделить элементы в массиве (превращает строку в массив), s - разделитель
-// const str = prompt("", "");
-// const products = str.split(", ");
-// console.log(products);
-
-// // 5) arr.join(s) - объединяет в одну строку (превращает массив в строку), s - разделитель
-// console.log(products.join('; '));
-
-// 6) arr.sort() - метод сортировки, работает как сортировка строк, поэтому не стоит
-// этим методом сортировать массив с числами, так как сортировка будет не верной
-// products.sort();
-// console.log(products);
-
-// // шаблон для сортировки
-function compareNum(a, b) {
-    return a - b;
-}
-// // sort() использует алгоритм быстрой сортировки, поэтому должен принимать формулу a - b
-// arr.sort(compareNum);
-// console.log(arr);
-
-// 7) arr.shift() - удаляет первый элемент из массива
-console.log(arr);
-
-arr.shift();
-console.log(arr);
-
-// 8) arr.unshift(item) - добавляет элемент в начало массива
-arr.unshift(55);
-// arr.sort(compareNum);
-console.log(arr);
-
-// 9) delete arr[1] - удаляет определенный элемент, в данном случае второй
-delete arr[1];
-console.log(arr);
-
-// 10) arr.splice(index, count, elem1...) - удалить count (количество) элементов, начиная с index и заменить на элементы elem1...
-arr.splice(0, 2, 100)
-console.log(arr);
-
-// 11) arr.slice(begin, end) - копирует часть массива с begin до end не включая
-console.log(arr.slice(0, 3));
-
-// 12) arr.reverse() - меняет порядок элементов на обратный
-arr.reverse();
-console.log(arr);
-
-// 13) arr.concat(item1...) - создаёт новый массив, в который компируются элементы из arr + item1...
-console.log(arr.concat('Hello'));
-
-/* Методы перебора:
-arr.forEach();
-arr.map();
-arr.every/some();
-arr.filter();
-arr.reduce();
-*/
-//--------------------------------------------------------------------------
-
-// !!!Псевдомассивы не имеют методов, это лишь структура, которая хранит данные по порядку!!!
-
-//----------------------------------------------------------------------------
-// Объекты
-let obj = new Object();
-let obj2 = {};
-
-// Свойства объектов:
-let obj3 = {
-    name: 'John'
-}
-obj3.name = 'David';
-console.log(obj3);
-
-// Методы объектов (действия, функции)
-let obj4 = {
-    sayName: function() {
-        return alert('David')
+    let key;
+    for (key in mainObj) {
+        objCopy[key] = mainObj[key];
     }
+
+    return objCopy;
 }
-console.log(obj4.sayName());
+
+const numbers = {
+    a: 2,
+    b: 5,
+    c: {
+        x: 7,
+        y: 4
+    }
+};
+
+const newNumbers = copy(numbers);
+
+newNumbers.a = 10;
+newNumbers.c.x = 11;
+
+console.log(newNumbers);
+console.log(numbers);
+
+// существуют поверхностные и глубокие копии объекта (сверху поверхностная, именно поэтому сохраняются лишь главные свойства, на первом уровне)
+
+
+// 2) Object.assign() - соединяет сразу два объекта, 1 аргумент - объект, в который нужно что-то поместить,
+// 2 аргумент - объект, который нужно поместить
+const add = {
+    d: 17,
+    e: 20
+}
+console.log(add);
+console.log(Object.assign(numbers, add));
+
+// так можно сделать и с пустым объектом, для этого первый аргумент указываем как {}
+const clone = Object.assign({}, add);
+clone.d = 55;
+console.log(clone);
+
+// 3) Создаём копию массива с помощью arr.slice();
+const oldArray = ['a', 'b', 'c'];
+const newArray = oldArray.slice();
+newArray[1] = 'Hello';
+console.log(oldArray);
+console.log(newArray);
+
+// 4) Оператор разворота ...spread (для массивов)
+const video = ['youTube', 'vimeo', 'rutube'],
+    blogs = ['wordpress', 'livejournal', 'blogger'],
+    internet = [...video, ...blogs, 'VK', 'facebook'];
+
+console.log(internet);
+// либо
+function log(a, b, c) {
+    console.log(a);
+    console.log(b);
+    console.log(c);
+}
+const num = [2, 5, 7];
+log(...num);
+
+//
+const array = ["a", "b"];
+
+const oneMoreArray = [...array];
+console.log(array);
+console.log(oneMoreArray);
+
+//
+const q = {
+    one: 1,
+    two: 2
+};
+
+const newObj = {...q};
+console.log(q);
+console.log(newObj);
