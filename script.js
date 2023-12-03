@@ -103,3 +103,56 @@ const q = {
 const newObj = {...q};
 console.log(q);
 console.log(newObj);
+//---------------------------------------------------------
+
+
+
+// таск с Udemy
+const personalPlanPeter = {
+    name: "Peter",
+    age: "29",
+    skills: {
+        languages: ['ru', 'eng'],
+        programmingLangs: {
+            js: '20%',
+            php: '10%'
+        },
+        exp: '1 month'
+    },
+    showAgeAndLangs(plan) {
+        const {age} = plan;
+        const {languages} = plan.skills;
+        return `Мне ${age} и я владею языками: ${languages.join(' ').toUpperCase()}`;
+    }
+};
+
+console.log(personalPlanPeter.showAgeAndLangs(personalPlanPeter));
+
+const personalPlanDavid = {
+    name: "David",
+    age: "32",
+    skills: {
+        languages: ['ru', 'eng'],
+        programmingLangs: {},
+        exp: '3 month'
+    }
+};
+
+
+function showExperience(plan) {
+    const {exp} = plan.skills;
+    return exp;
+}
+console.log(showExperience(personalPlanPeter));
+
+function showProgrammingLangs(plan) {
+    let str = '';
+    const {programmingLangs} = plan.skills;
+
+        for (let key in programmingLangs) {
+          str += `Язык ${key} изучен на ${programmingLangs[key]}\n`;
+        }
+    return str;
+}
+console.log(showProgrammingLangs(personalPlanPeter));
+console.log(showProgrammingLangs(personalPlanDavid));
