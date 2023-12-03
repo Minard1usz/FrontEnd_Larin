@@ -1,109 +1,118 @@
-//Объекты и их методы
-// Способ 1:
-// const obj = new Object();
+const arr = [11, 2, 32, 6, 18];
+arr.sort();
+// console.log(arr);
+// arr.length состоит из последнего индекса + 1
+arr[99] = 0;
+console.log(arr.length);
 
-// Способ 2:
-const options = {
-    name: 'test',
-    width: 1024,
-    height: 1024,
-    colors: {
-        border: 'black',
-        bg: 'red'
-    },
-    makeTest: function() {
-        console.log('Do the function');
-    }
-};
-// console.log(options.name);
-// console.log(options['colors']['border']);
-options.makeTest();
+// Методы массива
+// 1) arr.pop - удаляет последний элемент в массиве
+arr.pop();
+console.log(arr);
 
-// Методы
-// 1) Object.keys() - получаем массив со всеми ключами
-// также есть свойство length (быстрее, чем через counter)
-console.log(Object.keys(options));
-console.log(Object.keys(options).length);
+// 2) arr.push - добавляет элемент в конец массива
+arr.push(9);
+console.log(arr);
 
-// 2) Object.values() - создает массив значений объекта
-console.log(Object.values(options));
-
-// 3) Object.entries() - создает вложенный массив пар "ключ-значение" объекта
-console.log(Object.entries(options));
-
-// 4) Object.assign() - копирует значения из одного объекта в другой
-const name = {
-    firstName: 'John',
-    lastName: 'Cold'
-};
-
-const details = {
-    job: 'waiter',
-    employer: 'SOHO'
-};
-const character = Object.assign(name, details);
-console.log(character);
-// либо через spread оператор
-// const character = {...name, ...details};
-
-// 5) Object.freeze() - предотвращает модификацию свойств и значений объекта и добавление или удаление свойств объекта.
-const user = {
-    username: 'Daniel',
-    password: 'attendant212'
-};
-
-const newUser = Object.freeze(user);
-newUser.password = 'wdge341';
-newUser.active = true;
-console.log(newUser);
-
-// 6) Object.isFrozen() - позволяет определить, был ли объект заморожен или нет, и возвращает логическое значение.
-console.log(Object.isFrozen(newUser));
-
-// 7) Object.seal() - предовращает добавление новых свойств объекта, но позволяет изменять
-// существующие свойства
-const car = {
-    brand: 'Mazda',
-    model: '6'
+// перебрать массив можно через цикл for
+// чтобы определиться к определённому элементу массива, нужно указать его в []
+for (let i = 0; i < arr.length; i++) {
+    console.log(arr[i]);
 }
 
-const newCar = Object.seal(car);
-newCar.brand = 'KIA';
-newCar.sold = true;
-console.log(newCar);
-// уже существующий brand отредактировать было можно, а добавить свойство sold - нет.
+// либо for of, который можно остановить через break или continue
+for (let value of arr) {
+    console.log(value);
+}
+
+// for of работает только с массивоподобными сущностями: массив, псевдомассив, строка
+// объекты перебрать через for of нельзя
 
 
-
-// // чтобы удалить, используем оператор delete
-// delete options.name;
-// console.log(options);
-
-
-// ВАЖНО!!! 
-// Чтобы перебрать объект, используем for (key in obj);
-// for (let key in options) {
-//     console.log(`Свойство ${key} имеет значение ${options[key]}`);
-// };
-
-// Если присутствует объект в объекте, нужно использовать условие либо рекурсию
-// можно использовать перебор со счётчиком
-// let counter = 0;
-// for (let key in options) {
-//     if (typeof(options[key]) === 'object') {
-//         for (i in options[key]) {
-//             console.log(`Свойство ${i} имеет значение ${options[key][i]}`);
-//             counter++;
-//         }
-//     } else {
-//         console.log(`Свойство ${key} имеет значение ${options[key]}`);
-//         counter++;
-//     }
-// }
-// console.log(counter);
+// либо 3) arr.forEach(), остановить нельзя
+// имеет 3 аргумента: 1 - элемент, 2 - номер по порядку, 3 - ссылка на массив, который перебираем
+// arr.forEach(function(item, i, arr) {
+//     console.log(`${i}: ${item} внутри массива ${arr}`);
+// });
 
 
-// Деструктуризация объекта (достаём данные)
-const {border, bg} = options.colors;
-console.log(border);
-console.log(bg);
+// 4) arr.split(s) - помагает разделить элементы в массиве (превращает строку в массив), s - разделитель
+// const str = prompt("", "");
+// const products = str.split(", ");
+// console.log(products);
+
+// // 5) arr.join(s) - объединяет в одну строку (превращает массив в строку), s - разделитель
+// console.log(products.join('; '));
+
+// 6) arr.sort() - метод сортировки, работает как сортировка строк, поэтому не стоит
+// этим методом сортировать массив с числами, так как сортировка будет не верной
+// products.sort();
+// console.log(products);
+
+// // шаблон для сортировки
+function compareNum(a, b) {
+    return a - b;
+}
+// // sort() использует алгоритм быстрой сортировки, поэтому должен принимать формулу a - b
+// arr.sort(compareNum);
+// console.log(arr);
+
+// 7) arr.shift() - удаляет первый элемент из массива
+console.log(arr);
+
+arr.shift();
+console.log(arr);
+
+// 8) arr.unshift(item) - добавляет элемент в начало массива
+arr.unshift(55);
+// arr.sort(compareNum);
+console.log(arr);
+
+// 9) delete arr[1] - удаляет определенный элемент, в данном случае второй
+delete arr[1];
+console.log(arr);
+
+// 10) arr.splice(index, count, elem1...) - удалить count (количество) элементов, начиная с index и заменить на элементы elem1...
+arr.splice(0, 2, 100)
+console.log(arr);
+
+// 11) arr.slice(begin, end) - копирует часть массива с begin до end не включая
+console.log(arr.slice(0, 3));
+
+// 12) arr.reverse() - меняет порядок элементов на обратный
+arr.reverse();
+console.log(arr);
+
+// 13) arr.concat(item1...) - создаёт новый массив, в который компируются элементы из arr + item1...
+console.log(arr.concat('Hello'));
+
+/* Методы перебора:
+arr.forEach();
+arr.map();
+arr.every/some();
+arr.filter();
+arr.reduce();
+*/
+//--------------------------------------------------------------------------
+
+// !!!Псевдомассивы не имеют методов, это лишь структура, которая хранит данные по порядку!!!
+
+//----------------------------------------------------------------------------
+// Объекты
+let obj = new Object();
+let obj2 = {};
+
+// Свойства объектов:
+let obj3 = {
+    name: 'John'
+}
+obj3.name = 'David';
+console.log(obj3);
+
+// Методы объектов (действия, функции)
+let obj4 = {
+    sayName: function() {
+        return alert('David')
+    }
+}
+console.log(obj4.sayName());
