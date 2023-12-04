@@ -174,7 +174,7 @@ const someString = 'This is some strange string';
 function reverse(str) {
     let data = str;
     if (typeof(data) !== 'string') {
-        console.log('error');
+       return console.log('Ошибка!');
     }
     const arr = data.split('');
     arr.reverse();
@@ -203,6 +203,7 @@ const additionalCurrencies = ['UAH', 'RUB', 'CNY'];
 
 function availableCurr(arr, missingCurr) {
     arr = [...baseCurrencies, ...additionalCurrencies];
+
     if (Object.keys(arr).length === 0) {
         missingCurr = 'Нет доступных валют';
         console.log(missingCurr);
@@ -210,9 +211,9 @@ function availableCurr(arr, missingCurr) {
         console.log(`Доступные валюты:\n`)
         arr.forEach(function(curr, i){
             if (curr !== missingCurr) {
-                console.log(`${curr}\n`)
+                console.log(`${curr}\n`);
             }
-        })
+        });
     }
     return;
 }
