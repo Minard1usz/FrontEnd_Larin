@@ -33,4 +33,3 @@ const c2 = increment(); debugger
 const c3 = increment(); debugger
 
 console.log(c1, c2, c3);
-
